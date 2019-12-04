@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
+        <link type="text/css" rel="stylesheet" href="style.css">
+        <style></style>
+    </head>
+    <body>
+        <h1><a href="https://adventofcode.com/2018">Advent of Code 2019</a></h1>
+        
+        <a class="link inverted" href="https://github.com/Vyper248/advent-of-code-2018">[View all finished days on GitHub]</a>
+                
+        <hr>
+        
+        <div class="container"></div>
+        
+        <template>
+            <div class="day">
+                <h3>Day 1</h3>
+                <div class="visualLink"><a target="_blank"></a></div>
+                
+                <div class="answers">
+                    <div class="starGroup">
+                        <h4>&#9733;</h4>
+                        <div class="answer one">
+                        
+                        </div>
+                        <div class="popupAnswer hidden"></div>
+                    </div>
+                    
+                    <div class="starGroup">
+                        <h4>&#9733;&#9733;</h4>
+                        <div class="answer two">
+                        
+                        </div>
+                        <div class="popupAnswer hidden"></div>
+                    </div>
+                </div>
+                
+                <a class="link" href="">[View Code]</a>
+            </div>
+        </template>
+        
+        <script>
+        
+            const days = [
+                {first: 0, second: 0},
+                {first: 0, second: 0},
+                {first: 0, second: 0},
+                {first: 0, second: 0},
+                {first: 0, second: 0},
+                {first: 0, second: 0},
+                {first: 0, second: 0},
+                {first: 0, second: 0},
+                {first: 0, second: 0},
+                {first: 0, second: 0},
+                {first: 0, second: 0},
+                {first: 0, second: 0},
+                {first: 0, second: 0},
+                {first: 0, second: 0},
+                {first: 0, second: 0},
+                {first: 0, second: 0},
+                {first: 0, second: 0},
+                {first: 0, second: 0},
+                {first: 0, second: 0},
+                {first: 0, second: 0},
+                {first: 0, second: 0},
+                {first: 0, second: 0},
+                {first: 0, second: 0},
+                {first: 0, second: 0},
+                {first: 0, second: 0},
+            ];
+            
+            const container = document.querySelector('.container');
+            const template = document.querySelector('template').content;
+            
+            days.forEach((day,i) => {
+                const dayNode = template.cloneNode(true);
+                
+                day.first = checkLength(dayNode, day.first, 'one');
+                day.second = checkLength(dayNode, day.second, 'two');
+                
+                dayNode.querySelector('h3').innerText = 'Day '+(i+1);
+                dayNode.querySelector('.answer.one').innerHTML = day.first || '';
+                dayNode.querySelector('.answer.two').innerHTML = day.second || '';
+                dayNode.querySelector('.link').setAttribute('href', 'https://github.com/Vyper248/advent-of-code-2018/blob/master/day'+(i+1)+'.js');
+                
+                if (day.first === 0 && day.second === 0){
+                    dayNode.querySelector('.day').classList.add('empty');
+                    dayNode.querySelector('.link').removeAttribute('href');
+                }
+                
+                if (day.visual && day.visual.length > 0){
+                    let link = dayNode.querySelector('.visualLink a');
+                    link.setAttribute('href', day.visual);
+                    link.innerHTML = '<i class="fas fa-eye"></i>';
+                }
+                
+                container.appendChild(dayNode);
+            });
+            
+            function checkLength(dayNode, answer, className){
+                if (answer.toString().length > 10) {
+                    const popup = dayNode.querySelector(`.answer.${className} + .popupAnswer`);
+                    popup.innerHTML = answer;
+                    popup.classList.remove('hidden');
+                    return answer.toString().substr(0,5) + '...';
+                }
+                return answer;
+            }
+        
+        </script>
+    </body>
+</html>

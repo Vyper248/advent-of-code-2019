@@ -1,0 +1,161 @@
+:root {
+    --textColor: #00cc00;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: black;
+    color: var(--textColor);
+    text-align: center;
+    font-family: "Source Code Pro", monospace;
+}
+
+h1 {
+    text-align: center;
+    font-size: 5em;
+    font-weight: 100;
+}
+
+h1 a {
+    color: var(--textColor);
+    text-decoration: none;
+}
+
+h3 {
+    background-color: lightgray;
+    color: black;
+    margin: 0px;
+    padding: 10px;
+}
+
+h4 {
+    margin: 0px;
+    position: relative;
+    top: -2px;
+    color: gold;
+}
+
+.container {
+    max-width: 1440px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: auto;
+}
+
+.day {
+    width: 220px;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    margin: 20px;
+    position: relative;
+}
+
+.day.empty {
+    opacity: 0.2;
+}
+
+.answers {
+    padding: 10px;
+}
+
+.answer {
+    color: white;
+}
+
+.answer:hover + .popupAnswer {
+    opacity: 1;
+    z-index: 2;
+}
+
+.popupAnswer:hover {
+    opacity: 1;
+    z-index: 2;
+}
+
+.popupAnswer {
+    opacity: 0;
+    position: absolute;
+    left: 130px;
+    top: 0px;
+    border: 1px solid var(--textColor);
+    padding: 10px;
+    border-radius: 10px;
+    background-color: black;
+    z-index: -1;
+    transform: translate(-50%, 0%);
+    transition: 0.3s;
+    color: white;
+}
+
+.popupAnswer.hidden {
+    display: none;
+}
+
+.starGroup {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    position: relative;
+}
+
+.starGroup > h4, .starGroup > .answer {
+    width: 50%;
+}
+
+.starGroup:first-of-type {
+    border-bottom: 1px solid #555;
+}
+
+a.link {
+    color: white;
+    border: 1px solid black;
+    padding: 10px;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: 0.3s;
+    display: inline-block;
+}
+
+.link.inverted:hover {
+    border-color: lightgray;
+    color: var(--textColor);
+}
+
+.day.empty .link:hover {
+    background-color: lightgray;
+    color: black;
+    cursor: default;
+}
+
+.day a.link {
+    border: 1px solid lightgray;
+    padding: 10px;
+    width: 100%;
+    background-color: lightgray;
+    color: black;
+    border-radius: 0px 0px 4px 4px;
+}
+
+.visualLink {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    font-size: 1.3em;
+}
+
+.visualLink a {
+    color: var(--textColor);
+}
+
+.day a.link:hover {
+    border-right-color: black;
+    border-left-color: black;
+    border-bottom-color: black;
+    background-color: black;
+    color: var(--textColor);
+}
