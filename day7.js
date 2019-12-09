@@ -65,7 +65,7 @@ const second = (input) => {
 const getPrograms = (arr, sequence) => {
     let programs = [];
     for (let i = 0; i < sequence.length; i++) {
-        let program = runProgramGen([...arr]);
+        let program = programGen([...arr]);
         program.next(); //move to first input
         program.next(sequence[i]); //input phase setting and move to next input
         programs.push(program);
@@ -91,14 +91,14 @@ const getCombinations = (input) => {
 }
 
 const runProgram = (arr, firstInput, secondInput) => {
-    const program = runProgramGen(arr);
+    const program = programGen(arr);
     program.next();
     program.next(firstInput);
     let output = program.next(secondInput);
     return output.value;
 }
 
-function *runProgramGen(arr) {
+function *programGen(arr) {
     let length = 4;
     let finalOutput = 0;
 
@@ -121,7 +121,7 @@ function *runProgramGen(arr) {
             case 1: arr[output] = inputAVal + inputBVal; break; //add
             case 2: arr[output] = inputAVal * inputBVal; break; //multiply
             case 3: arr[arr[i+1]] = yield; length = 2; break; //input
-            case 4: finalOutput = paramA === 0 ? yield arr[arr[i+1]] : yield arr[i+1]; length = 2; break; //output
+            case 4: finalOutput = yield inputAVal; length = 2; break; //output
             case 5: inputAVal !== 0 ? [i, length] = [inputBVal, 0] : length = 3; break; //jump-if-true
             case 6: inputAVal === 0 ? [i, length] = [inputBVal, 0] : length = 3; break; //jump-if-false
             case 7: inputAVal < inputBVal ? arr[output] = 1 : arr[output] = 0; break; //less than

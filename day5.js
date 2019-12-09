@@ -38,7 +38,7 @@ const runProgram = (arr, input) => {
             case 1: arr[output] = inputAVal + inputBVal; break; //add
             case 2: arr[output] = inputAVal * inputBVal; break; //multiply
             case 3: arr[arr[i+1]] = input; length = 2; break; //input
-            case 4: finalOutput = paramA === 0 ? arr[arr[i+1]] : arr[i+1]; length = 2; break; //output
+            case 4: finalOutput = inputAVal; length = 2; break; //output
             case 5: inputAVal !== 0 ? [i, length] = [inputBVal, 0] : length = 3; break; //jump-if-true
             case 6: inputAVal === 0 ? [i, length] = [inputBVal, 0] : length = 3; break; //jump-if-false
             case 7: inputAVal < inputBVal ? arr[output] = 1 : arr[output] = 0; break; //less than
