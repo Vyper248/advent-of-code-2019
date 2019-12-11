@@ -1,4 +1,5 @@
 const readFile = require('./readFile').readFile;
+const { intcodeProgram } = require('./intcode');
 
 const runFunctions = (input) => {
     let firstStar = first(input);
@@ -65,7 +66,7 @@ const second = (input) => {
 const getPrograms = (arr, sequence) => {
     let programs = [];
     for (let i = 0; i < sequence.length; i++) {
-        let program = programGen([...arr]);
+        let program = intcodeProgram([...arr]);
         program.next(); //move to first input
         program.next(sequence[i]); //input phase setting and move to next input
         programs.push(program);
@@ -91,63 +92,11 @@ const getCombinations = (input) => {
 }
 
 const runProgram = (arr, firstInput, secondInput) => {
-    const program = programGen(arr);
+    const program = intcodeProgram(arr);
     program.next();
     program.next(firstInput);
     let output = program.next(secondInput);
     return output.value;
-}
-
-function *programGen(arr) {
-    let length = 4;
-    let finalOutput = 0;
-
-    for (let i = 0; i < arr.length; i+=length) {        
-        let [opcode, paramA, paramB] = getParams(arr[i]);  
-
-        if (opcode === 99) break;
-
-        length = 4;
-        let inputA = arr[i+1];
-        let inputB = arr[i+2];
-        let output = arr[i+3];
-
-        let inputAVal = paramA === 0 ? arr[inputA] : inputA;
-        let inputBVal = paramB === 0 ? arr[inputB] : inputB;
-
-        let error = false;
-             
-        switch (opcode) {
-            case 1: arr[output] = inputAVal + inputBVal; break; //add
-            case 2: arr[output] = inputAVal * inputBVal; break; //multiply
-            case 3: arr[arr[i+1]] = yield; length = 2; break; //input
-            case 4: finalOutput = yield inputAVal; length = 2; break; //output
-            case 5: inputAVal !== 0 ? [i, length] = [inputBVal, 0] : length = 3; break; //jump-if-true
-            case 6: inputAVal === 0 ? [i, length] = [inputBVal, 0] : length = 3; break; //jump-if-false
-            case 7: inputAVal < inputBVal ? arr[output] = 1 : arr[output] = 0; break; //less than
-            case 8: inputAVal === inputBVal ? arr[output] = 1 : arr[output] = 0; break; //equal
-            default: error = true; break;
-        }
-
-        if (error) {
-            console.log('Error, opcode was: ', opcode);
-            break;
-        }        
-    }
-
-    return finalOutput;
-}
-
-const getParams = (num) => {
-    if (num < 100) return [num, 0, 0];
-
-    let parts = (num+'').split('').map(Number);
-    
-    let opCode = Number(`${parts[parts.length-2]}${parts[parts.length-1]}`);
-    let paramA = parts[parts.length-3] === undefined ? 0 : parts[parts.length-3];
-    let paramB = parts[parts.length-4] === undefined ? 0 : parts[parts.length-4];
-
-    return [opCode, paramA, paramB];
 }
 
 //====================================================== TESTING ======================================================
