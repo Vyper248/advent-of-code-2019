@@ -7,10 +7,12 @@
         <style>            
             * {
                 box-sizing: border-box;
+                color: white;
             }
             
             body, html {
                 min-height: 100%;
+                background-color: black;
             }
             
             body {
@@ -23,6 +25,7 @@
             
             h2 {
                 margin: 0px;
+                color: white;
             }
             
             body div {
@@ -35,12 +38,7 @@
             
             #canvasContainer {
                 position: relative;
-            }
-            
-            #carts {
-                position: absolute;
-                top: 0px;
-                left: 0px;
+                width: 100%;
             }
         </style>
         
@@ -49,9 +47,10 @@
         
         <div><h2>Visualisation for Advent of Code - Day 13</h2></div>
         <div id="canvasContainer">
-            <canvas id="track" width="900" height="900"></canvas>
-            <canvas id="carts" width="900" height="900"></canvas>
+            <canvas id="board" width="900" height="500"></canvas>
         </div>
+
+        <div>Score: <span id="score"></span></div>
         
         <script src="day13Visual.js"></script>
     </body>
