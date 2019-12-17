@@ -1,20 +1,3 @@
-const runProgram = (arr, input) => {
-    const program = programGen(arr);
-    let output = program.next();
-    let outputArray = [];
-
-    while(output.done === false) {
-        if (output.value === undefined) {
-            output = program.next(input);            
-        } else {
-            outputArray.push(output.value);
-            output = program.next();
-        }
-    }
-
-    return outputArray.join('');
-}
-
 function *intcodeProgram(arr) {
     let length = 4;
     let relativeBase = 0;
@@ -62,9 +45,9 @@ function *intcodeProgram(arr) {
 }
 
 const getValue = (param, arr, input, relativeBase) => {    
-    if (param === 0) return arr[input];
-    if (param === 1) return input;
-    if (param === 2) return arr[relativeBase+input];
+    if (param === 0) return arr[input] !== undefined ? arr[input] : 0;
+    if (param === 1) return input != undefined ? input : 0;
+    if (param === 2) return arr[relativeBase+input] !== undefined ? arr[relativeBase+input] : 0;
     else console.log('Error, wrong param');
 }
 
@@ -83,6 +66,5 @@ const getParams = (num) => {
 
 
 module.exports = {
-    intcodeProgram,
-    runProgram
+    intcodeProgram
 }
