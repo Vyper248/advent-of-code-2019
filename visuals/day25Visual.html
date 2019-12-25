@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        
+        <style>            
+            * {
+                box-sizing: border-box;
+                color: white;
+            }
+            
+            body, html {
+                min-height: 100%;
+                background-color: black;
+                padding: 0px;
+                margin: 0px;
+            }
+            
+            body {
+                text-align: center;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+            }
+            
+            h2 {
+                margin: 0px;
+                color: white;
+            }
+            
+            body div {
+                margin: 5px;
+            }
+            
+            canvas {
+                max-width: 100%;
+            }
+            
+            #canvasContainer {
+                position: absolute;
+                top: 0px;
+                left: 0px;
+                width: 100%;
+                height: 100%;
+                margin: 0px;
+                pointer-events: none;
+                z-index: 0;
+                padding-top: 100px;
+                opacity: 0.2;
+            }
+
+            input {
+                background-color: black;
+                border: 1px solid white;
+                font-size: 15px;
+                padding: 5px;
+            }
+
+            #text {
+                text-align: left;
+                width: 1000px;
+                height: 1000px;
+                border: 1px solid white;
+                overflow: scroll;
+            }
+
+            #inv {
+                border: 1px solid white;
+                width: 200px;
+            }
+
+            #container {
+                display: flex;
+                z-index: 2;
+            }
+
+            #commands {
+                padding: 10px;
+            }
+
+            .command {
+                border: 1px solid grey;
+                padding: 5px;
+            }
+
+        </style>
+        
+    </head>
+    <body>
+        
+        <div><h2>Visualisation for Advent of Code - Day 25</h2></div>
+
+        <div id="container">
+            <div id="text"></div>
+            <div id="inv"><h2>Inventory</h2></div>
+        </div>
+
+        <div id="canvasContainer">
+            <canvas id="board" width="1200" height="750"></canvas>
+        </div>
+
+        <input id="input" type="text" placeholder="command" onKeydown="keypress(event)"/>
+
+        <div id="commands">Commands: <span class="command">north</span> <span class="command">south</span> <span class="command">east</span> <span class="command">west</span> <span class="command">take [item name]</span> <span class="command">drop [item name]</span></div>
+        
+        <script src="day25Visual.js"></script>
+    </body>
+</html>
