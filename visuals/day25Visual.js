@@ -98,7 +98,10 @@ const runCommand = (command) => {
     text.innerText += output;
     text.scrollTop = 50000000;
 
-    if (!output.includes('Command?')) {
+    if (output.includes('cockpit')) {
+        text.innerText += '\n\nYou\'re finished now, if you want to play again please refresh the page!';
+        text.scrollTop = 50000000;
+    } else if (!output.includes('Command?')) {
         text.innerText += '\n\nYou\'re dead now, please refresh the page and try again!';
         text.scrollTop = 50000000;
     }
