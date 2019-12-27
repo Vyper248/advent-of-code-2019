@@ -27,6 +27,12 @@ function keypress(e) {
     }
 }
 
+function submitCommand() {
+    let val = input.value;
+    input.value = '';
+    runCommand(val);
+}
+
 const first = (input) => {   
     let arr = input.split(',').map(Number);
     program = intcodeProgram(arr);

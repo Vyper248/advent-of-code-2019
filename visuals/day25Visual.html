@@ -89,6 +89,10 @@
                 padding: 5px;
             }
 
+            #commandBtn {
+                cursor: pointer;
+            }
+
         </style>
         
     </head>
@@ -105,7 +109,7 @@
             <canvas id="board" width="1200" height="750"></canvas>
         </div>
 
-        <input id="input" type="text" placeholder="command" onKeydown="keypress(event)"/>
+        <input id="input" type="text" placeholder="command" onKeydown="keypress(event)"/> <input type="button" id="commandBtn" value="Go" onClick="submitCommand()"/>
 
         <div id="commands">Commands: <span class="command">north</span> <span class="command">south</span> <span class="command">east</span> <span class="command">west</span> <span class="command">take [item name]</span> <span class="command">drop [item name]</span></div>
         
